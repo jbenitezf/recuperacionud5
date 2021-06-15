@@ -3,6 +3,7 @@
  */
 package ud05arrays;
 
+import helpers.Helper;
 
 /**
  * @author eserrano
@@ -41,7 +42,16 @@ public class Ud5Ejercicio1 {
 	 * @return Nuevo array con los Virus creados.
 	 */
 	public static Virus[] crearArrayVirus(Object[][] datosVirus) {
-		return null;
+		Virus[] retorno = new Virus[datosVirus.length];
+		
+		int i = 0;
+		for (Object[] fs : datosVirus) {
+			retorno[i] = new Virus((String)fs[0],(Integer)fs[1],(Float)fs[2]);
+			i++;
+		} 
+			
+		
+		return retorno;
 	}
 	
 
@@ -63,7 +73,19 @@ public class Ud5Ejercicio1 {
 	public static void imprimeVirus(Virus[] array, String titulo, boolean pares) {
 		System.out.println(titulo + ": --------------------");
 		
-		//TODO Insertar solucion aquí
+		if(pares){
+			for (int i = 0; i < array.length; i+=2) {
+				System.out.println(array[i]);
+			} 
+		}else {
+			for (int j = 1; j < array.length; j+=2) {
+				if(j > array.length)
+					break;
+				else
+					System.out.println(array[j]);
+			}
+		}
+			 
 		
 		System.out.println("-----------------------------");
 	}
@@ -81,7 +103,16 @@ public class Ud5Ejercicio1 {
 	 * @return copia ordenada del array pasado como parametro
 	 */
 	public static Virus[] ordena(final Virus[] array) {
-		return null;
+		Virus[] retorno = array.clone();
+		
+		for (int i = 0; i < retorno.length; i++) {
+			for (int j = i+1; j < retorno.length; j++) {
+				if(retorno[i].compareTo(retorno[j])>0) {
+					Helper.swap(retorno, i, j);
+				}
+			}
+		}
+		return retorno;
 	}
 	
 	/**
@@ -105,7 +136,26 @@ public class Ud5Ejercicio1 {
 	 * @return nuevo array sin los eliminados.
 	 */
 	public static Virus[] eliminaVirus(Virus v,final Virus[] array) {
-		return null;
+		Virus[] retorno = array.clone();
+		for (int i = 0; i < retorno.length; i++) {
+			if(v.equals(retorno[i]))
+				retorno[i]=null;
+		}
+//		quitado da error por bucle
+//		for (int i = 0; i < retorno.length; i++) {
+//			int intercambios = 0;
+//			
+//			while(retorno[i]==null) { 
+//				for (int j = i+1; j < retorno.length; j++) {
+//					Helper.swap(retorno, i, j);	
+//					intercambios++;
+//					if(intercambios > retorno.length-i)
+//						return retorno;
+//				}
+//			}	
+//		}
+		
+		return retorno;
 	}
 	
 	/**
@@ -121,7 +171,24 @@ public class Ud5Ejercicio1 {
 	 * null si no hay ninguno más peligroso
 	 */
 	public static int [] encuentraPeligrosos(Virus v, Virus[] array) {
-		return null;
+		int[] comparador = null; 
+		int[] retorno =null;
+		Float relacion = v.getR0()*v.getLetalidad();
+		int j = 0;
+		for (int i = 0; i < array.length; i++) {
+			Float relacion1 =array[i].getR0()*array[i].getLetalidad();
+			if(relacion <= relacion1) {
+				comparador[j] = i;
+				j++;
+			}
+		}
+		if(j > 0) {
+			for (int i = 0; i < comparador.length; i++) {
+				retorno[i] = comparador[i];
+			}
+		}
+		
+		return retorno;
 	}
 	
 	

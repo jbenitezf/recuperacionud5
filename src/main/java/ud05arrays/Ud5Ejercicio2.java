@@ -16,7 +16,7 @@ public class Ud5Ejercicio2 {
 	 * @return Expresión regular que valida los requisitos
 	 */
 	public static String validaDNI() {
-		return null;
+		return "[0-9]{10}[A-Z]{2}";
 	}
 	
 	/**
@@ -32,7 +32,7 @@ public class Ud5Ejercicio2 {
 	 * @return Expresión regular que valida los requisitos
 	 */
 	public static String validaCampoEnumerado() {
-		return null;
+		return "(PERRO|perro|GATO|gato|TORTUGA|tortuga|LORO|loro)";
 	}
 
 }
